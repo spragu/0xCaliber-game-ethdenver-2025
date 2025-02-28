@@ -88,12 +88,15 @@ namespace Projectiles
 				    direction, distance + 2 * _bounceObjectRadius, _hitMask, out LagCompensatedHit hit, ignoreInputAuthority) == true)
 			{
 				bool doBounce = _canBounce;
-
-				if (_canBounce == true && hit.GameObject != null)
+				bool isHit = false;
+				var isWallCollision =  false;
+				if (hit.GameObject != null)
 				{
 					// Check bounce layer
 					int hitLayer = hit.GameObject.layer;
-					doBounce = ((1 << hitLayer) & _bounceMask) != 0;
+					isWallCollision = ((1 << hitLayer) & _bounceMask) != 0;
+					if(_canBounce == true)
+						doBounce = ((1 << hitLayer) & _bounceMask) != 0;
 				}
 
 				if (doBounce == true)
@@ -102,6 +105,12 @@ namespace Projectiles
 				}
 				else
 				{
+					if(isWallCollision )
+					{
+						
+						var obj = Context.Runner.Spawn(_collectionPrefab, hit.Point, Quaternion.identity, Context.Runner.LocalPlayer);
+						return;
+					}
 					HitUtility.ProcessHit(Context.Owner, direction, hit, _damage, _hitType);
 
 					data.ImpactPosition = hit.Point;
@@ -112,6 +121,8 @@ namespace Projectiles
 				}
 			}
 		}
+
+
 
 		public override void Activate(ref KinematicData data)
 		{
