@@ -2966,7 +2966,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   redTint: {r: 1, g: 0.3, b: 0.3, a: 1}
   greenTint: {r: 0.3, g: 1, b: 0.3, a: 1}
-  lerpSpeed: 2
+  lerpSpeed: 0.1
 --- !u!4 &186409980
 Transform:
   m_ObjectHideFlags: 0
