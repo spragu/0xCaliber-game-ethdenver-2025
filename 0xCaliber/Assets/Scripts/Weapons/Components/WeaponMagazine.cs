@@ -63,6 +63,7 @@ namespace Projectiles
 			else if (_hasUnlimitedAmmo == false)
 			{
 				_weaponAmmo--;
+				multiplayerState.ammoCount--;
 			}
 		}
 
