@@ -9,3 +9,9 @@ Hit play button
 
 From there you can enter single player mode and shoot bullets and see the events get emitted 
 You can watch the events land here just go to the playerShootEvent tab near the middle of the page then go back in the game and shoot your gun with left click.
+
+
+External/Premade assets used
+
+BestWebsockets(Unity asset store $$)
+PhotonUnity(Unity asset store free$)
