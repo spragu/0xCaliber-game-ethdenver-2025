@@ -10,6 +10,7 @@ namespace Projectiles
 	public class Gameplay : ContextBehaviour
 	{
 		// PUBLIC MEMBERS
+		public GameObject _collectionPrefab;
 
 		[Networked, Capacity(200)]
 		public NetworkDictionary<PlayerRef, Player> Players { get; }
@@ -108,6 +109,7 @@ namespace Projectiles
 
 		protected virtual void OnPlayerDeath(Player player)
 		{
+	
 			AddSpawnRequest(player, 3f);
 		}
 
@@ -167,6 +169,13 @@ namespace Projectiles
 
 			if (Players.TryGet(health.Object.InputAuthority, out Player player) == true)
 			{
+
+				while(multiplayerState.ammoCount > 0)
+				{
+					multiplayerState.ammoCount--;
+					var obj = Context.Runner.Spawn(_collectionPrefab, hitData.Position, Quaternion.identity, Context.Runner.LocalPlayer);
+					Debug.Log("Spawning pickup from a kill");
+				}
 				OnPlayerDeath(player);
 			}
 		}
