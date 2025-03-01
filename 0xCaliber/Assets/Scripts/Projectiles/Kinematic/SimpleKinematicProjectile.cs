@@ -43,6 +43,11 @@ namespace Projectiles
 
 			if (ProjectileUtility.ProjectileCast(runner, Context.Owner, previousPosition, direction, distance, _hitMask, out LagCompensatedHit hit) == true)
 			{
+
+				int hitLayer = hit.GameObject.layer;
+				var isWallCollision = ((1 << hitLayer)) != 0;
+
+
 				HitUtility.ProcessHit(Context.Owner, direction, hit, _damage, _hitType);
 
 				data.ImpactPosition = hit.Point;
@@ -50,6 +55,11 @@ namespace Projectiles
 				data.IsFinished = true;
 
 				SpawnImpact(data.ImpactPosition, data.ImpactNormal);
+				if(isWallCollision && !SkyboxTinter.isDegenMode )
+				{
+					
+					var obj = Context.Runner.Spawn(_collectionPrefab, hit.Point, Quaternion.identity, Context.Runner.LocalPlayer);
+				}
 			}
 
 			base.OnFixedUpdate(ref data);

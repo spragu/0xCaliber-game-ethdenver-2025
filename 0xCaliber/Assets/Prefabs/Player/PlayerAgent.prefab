@@ -147,14 +147,6 @@ MonoBehaviour:
   _PendingWeaponSlot: 0
   _initialWeapons:
   - {fileID: 2436901878621067112, guid: aef3a6c69710438429433081494fde96, type: 3}
-  - {fileID: 2436901878621067112, guid: c89643832265e2d4a9b82ccd69f408c2, type: 3}
-  - {fileID: 2436901878621067112, guid: 1064ec94a3cbf1b46ae11892e28ee483, type: 3}
-  - {fileID: 2436901878621067112, guid: 3975920a692598a4fb086d2a93036ece, type: 3}
-  - {fileID: 2436901878621067112, guid: 4f9a1fda6ff647b47a3951dc3f1de03d, type: 3}
-  - {fileID: 2436901878621067112, guid: 026110b38cf4936469137373d9ae7d6c, type: 3}
-  - {fileID: 2436901878621067112, guid: 397881b0743921046afe7751dfa6e647, type: 3}
-  - {fileID: 2436901878621067112, guid: e470da1c078cad24cb0f09435097da51, type: 3}
-  - {fileID: 2436901878621067112, guid: 0161695d82f654d49b0ec075fd2589a3, type: 3}
   _weaponsRoot: {fileID: 6249603782933705366}
   _fireTransform: {fileID: 2117859135794692440}
   _firstPersonWeaponOffset: {x: -0.15, y: 0, z: 0}

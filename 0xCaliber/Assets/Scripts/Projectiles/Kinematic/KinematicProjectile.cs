@@ -78,6 +78,7 @@ namespace Projectiles
 			_interpolationTime = 0f;
 
 			IsFinished = false;
+			etherbase_websocket.WebShoot();
 		}
 
 		public virtual void Deactivate()

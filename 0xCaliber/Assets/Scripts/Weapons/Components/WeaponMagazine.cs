@@ -50,7 +50,7 @@ namespace Projectiles
 			if (_isReloading == true)
 				return false;
 
-			int availableAmmo = _hasMagazine == true ? _magazineAmmo : _weaponAmmo;
+			int availableAmmo = multiplayerState.ammoCount;
 			return availableAmmo > 0;
 		}
 
