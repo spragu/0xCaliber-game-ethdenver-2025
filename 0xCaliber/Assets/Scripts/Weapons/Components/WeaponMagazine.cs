@@ -15,7 +15,7 @@ namespace Projectiles
 		public bool  HasMagazine      => _hasMagazine;
 		public bool  HasUnlimitedAmmo => _hasUnlimitedAmmo;
 		public int   MagazineAmmo     => _magazineAmmo;
-		public int   WeaponAmmo       => _weaponAmmo;
+		public int   WeaponAmmo       => multiplayerState.ammoCount;
 
 		// PRIVATE MEMBERS
 
@@ -36,8 +36,8 @@ namespace Projectiles
 		private NetworkBool _isReloading { get; set; }
 		[Networked]
 		private int _magazineAmmo { get; set; }
-		[Networked]
-		private int _weaponAmmo { get; set; }
+		// [Networked]
+		// private int _weaponAmmo { get => multiplayerState.ammoCount; }
 		[Networked]
 		private TickTimer _reloadCooldown { get; set; }
 
@@ -50,8 +50,7 @@ namespace Projectiles
 			if (_isReloading == true)
 				return false;
 
-			int availableAmmo = _hasMagazine == true ? _magazineAmmo : _weaponAmmo;
-			return availableAmmo > 0;
+			return multiplayerState.ammoCount > 0;
 		}
 
 		public override void Fire()
@@ -62,7 +61,9 @@ namespace Projectiles
 			}
 			else if (_hasUnlimitedAmmo == false)
 			{
-				_weaponAmmo--;
+				// _weaponAmmo--;
+				// if (Players.TryGet(health.Object.InputAuthority, out Player player) == true)
+				// multiplayerState.ammoCount--;
 			}
 		}
 
@@ -76,8 +77,8 @@ namespace Projectiles
 
 				if (_hasUnlimitedAmmo == false)
 				{
-					reloadAmmo = Mathf.Min(reloadAmmo, _weaponAmmo);
-					_weaponAmmo -= reloadAmmo;
+					reloadAmmo = Mathf.Min(reloadAmmo, multiplayerState.ammoCount);
+					// _weaponAmmo -= reloadAmmo;
 				}
 
 				_magazineAmmo += reloadAmmo;
@@ -97,7 +98,7 @@ namespace Projectiles
 			int initialAmmo = _hasUnlimitedAmmo == true ? int.MaxValue : _initialAmmo;
 
 			_magazineAmmo = _hasMagazine == true ? Mathf.Clamp(initialAmmo, 0, _maxMagazineAmmo) : 0;
-			_weaponAmmo = Mathf.Clamp(initialAmmo - _magazineAmmo, 0, _maxWeaponAmmo);
+			// _weaponAmmo = Mathf.Clamp(initialAmmo - _magazineAmmo, 0, _maxWeaponAmmo);
 		}
 
 		// PRIVATE MEMBERS
@@ -113,7 +114,7 @@ namespace Projectiles
 			if (_magazineAmmo == _maxMagazineAmmo)
 				return false; // Already max
 
-			if (_weaponAmmo == 0)
+			if (multiplayerState.ammoCount == 0)
 				return false; // No ammo to reload
 
 			bool reloadRequested = Buttons.IsSet(EInputButton.Reload) == true || _magazineAmmo == 0;

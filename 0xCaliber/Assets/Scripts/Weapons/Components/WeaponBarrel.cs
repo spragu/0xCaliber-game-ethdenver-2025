@@ -36,6 +36,7 @@ namespace Projectiles
 
 			for (int i = 0; i < _projectilesPerShot; i++)
 			{
+				
 				var projectileRotation = fireRotation;
 
 				if (_dispersion > 0f)

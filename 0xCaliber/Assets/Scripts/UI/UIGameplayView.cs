@@ -25,6 +25,7 @@ namespace Projectiles.UI
 		private UIHealth _health;
 		private UIWeapons _weapons;
 		private UIScreenEffects _screenEffects;
+		private UIAmmo _ammo;
 
 		private SceneContext _context;
 		private PlayerAgent _observedAgent;
@@ -45,7 +46,7 @@ namespace Projectiles.UI
 			_health = GetComponentInChildren<UIHealth>(true);
 			_weapons = GetComponentInChildren<UIWeapons>(true);
 			_screenEffects = GetComponentInChildren<UIScreenEffects>(true);
-
+			_ammo = GetComponentInChildren<UIAmmo>(true);
 			_aliveGroup.alpha = 0f;
 		}
 
@@ -62,7 +63,7 @@ namespace Projectiles.UI
 			_health.UpdateHealth(_observedAgent.Health);
 			_weapons.UpdateWeapons(_observedAgent.Weapons);
 			_screenEffects.UpdateEffects(_observedAgent);
-
+			_ammo.UpdateAmmo(multiplayerState.ammoCount);
 			ShowAliveGroup(_observedAgent.Health.IsAlive);
 		}
 

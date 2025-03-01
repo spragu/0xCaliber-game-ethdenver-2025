@@ -25,6 +25,9 @@ namespace Projectiles
 		// PRIVATE MEMBERS
 
 		[SerializeField]
+		public GameObject _collectionPrefab;
+
+		[SerializeField]
 		private GameObject _impactEffectPrefab;
 		[SerializeField]
 		private float _impactEffectReturnTime = 2f;
