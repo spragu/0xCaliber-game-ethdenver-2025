@@ -39,6 +39,7 @@ namespace Projectiles
 
 		public override void Fire()
 		{
+			multiplayerState.ammoCount--;
 			_fireCooldown = TickTimer.CreateFromTicks(Runner, _fireTicks);
 		}
 
